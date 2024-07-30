@@ -61,3 +61,4 @@ class LogiPage(QMainWindow):
 
         self.combo.setCurrentIndex(0)
         self.line1.setText(" ")
+        self.salary.setText(" ")

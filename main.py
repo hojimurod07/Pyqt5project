@@ -8,8 +8,8 @@ from  login import  LogiPage
 
 app  = QApplication([])
 
-l = LogiPage()
-l.show()
+a = Asosiy()
+a.show()
 
 app.exec_()
 
