@@ -3,6 +3,8 @@
 from PyQt5.QtWidgets import *
 from login import  LogiPage
 
+
+
 class Asosiy(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -15,6 +17,7 @@ class Asosiy(QMainWindow):
         self.vertical.addWidget(self.btn1)
         self.vertical.addWidget(self.btn2)
         self.btn1.clicked.connect(self.loginPress)
+        self.btn2.clicked.connect(self.royhatPress)
         w = QWidget()
         w.setLayout(self.vertical)
         self.setCentralWidget(w)
@@ -23,3 +26,19 @@ class Asosiy(QMainWindow):
         l  = LogiPage()
         l.show()
         self.oynalar.append(l)
+    def royhatPress(self):
+
+        ls = []
+        try:
+            with open("base.txt", "r") as f:
+                for line in f:
+                    if line.strip():  # Skip empty lines
+                        ls.append(line.strip().split(","))
+        except FileNotFoundError:
+            QMessageBox.warning(self, "Error", "Data file not found.")
+            return
+        except Exception as e:
+            QMessageBox.warning(self, "Error", f"An error occurred: {e}")
+            return
+        print(ls)
+

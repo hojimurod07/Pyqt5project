@@ -42,6 +42,7 @@ class LogiPage(QMainWindow):
         self.d.addWidget(self.submit)
 
         self.reset.clicked.connect(self.reset_bosilganda)
+        self.submit.clicked.connect(self.submit_bosilganda)
 
 
 
@@ -62,3 +63,21 @@ class LogiPage(QMainWindow):
         self.combo.setCurrentIndex(0)
         self.line1.setText(" ")
         self.salary.setText(" ")
+
+    def submit_bosilganda(self):
+        if not self.line1.text().strip() or self.combo.currentIndex() == 0 or not self.salary.text().strip():
+            QMessageBox.warning(self, "Warning", "Barcha maydonlar to'ldirilgan bo'lishi kerak")
+        else:
+            QMessageBox.information(self, "Success", "Muvaffaqiyatli qoshildi")
+            self.malumot_yozish()
+            self.close()
+
+    def malumot_yozish(self):
+        id  = 1
+        fullname = self.line1.text().lower().capitalize()
+        position = self.combo.currentText().lower()
+        salary = self.salary.text()
+        with open("base.txt", "a") as file:
+            file.write(f"{id}.{fullname}, {position},{salary}\n")
+        id+=1
+
