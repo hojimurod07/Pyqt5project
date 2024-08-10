@@ -1,5 +1,5 @@
 
-
+from  db import *
 from PyQt5.QtWidgets import *
 
 
@@ -73,11 +73,14 @@ class LogiPage(QMainWindow):
             self.close()
 
     def malumot_yozish(self):
-        id  = 1
-        fullname = self.line1.text().lower().capitalize()
-        position = self.combo.currentText().lower()
-        salary = self.salary.text()
-        with open("base.txt", "a") as file:
-            file.write(f"{id}.{fullname}, {position},{salary}\n")
-        id+=1
+
+        try:
+            fullname = self.line1.text().capitalize()
+            position = self.combo.currentText().lower()
+            salary =int( self.salary.text())
+            MalumotYoz(fullname,position,salary)
+
+
+        except:
+            print("Xatolik malumot olishda")
 

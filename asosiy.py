@@ -2,7 +2,7 @@
 
 from PyQt5.QtWidgets import *
 from login import  LogiPage
-
+from Jadvaloynasi import  *
 
 
 class Asosiy(QMainWindow):
@@ -27,18 +27,9 @@ class Asosiy(QMainWindow):
         l.show()
         self.oynalar.append(l)
     def royhatPress(self):
+        jadval = Jadval()
+        jadval.show()
+        self.oynalar.append(jadval)
 
-        ls = []
-        try:
-            with open("base.txt", "r") as f:
-                for line in f:
-                    if line.strip():  # Skip empty lines
-                        ls.append(line.strip().split(","))
-        except FileNotFoundError:
-            QMessageBox.warning(self, "Error", "Data file not found.")
-            return
-        except Exception as e:
-            QMessageBox.warning(self, "Error", f"An error occurred: {e}")
-            return
-        print(ls)
+
 
